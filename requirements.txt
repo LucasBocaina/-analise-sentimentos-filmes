@@ -4,3 +4,4 @@ textblob
 deep-translator
 transformers
 vaderSentiment
+Plotly
