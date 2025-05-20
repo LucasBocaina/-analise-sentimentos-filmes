@@ -106,16 +106,7 @@ def salvar_cache_filmes_analisados(dados):
 
 filmes_sem_comentario = carregar_filmes_sem_comentario()
 
-# --- GÍRIAS ---
-GIRIAS_PT = {
-    "mt": "muito", "mto": "muito", "top": "excelente", "topzera": "excelente",
-    "daora": "legal", "massa": "legal", "show": "excelente", "chatooo": "chato",
-    "n curti": "não gostei", "curti": "gostei", "pq": "porque", "qlq": "qualquer",
-    "zzz": "entediante", "ruinzinho": "ruim", "filmezao": "filme bom",
-    "filminho": "filme pequeno", "maneiro": "legal", "n gostei": "não gostei",
-    "nao gostei": "não gostei", "da hora": "legal", "10/10": "excelente", "mó": "muito",
-    "aff": "que saco"
-}
+
 GIRIAS_EN = {
     "awesome": "great", "sucks": "bad", "boring": "dull", "dope": "cool",
     "lame": "bad", "cringe": "awkward", "meh": "not interesting", "lol": "funny",
@@ -124,8 +115,6 @@ GIRIAS_EN = {
 }
 
 def corrigir_girias(texto):
-    for g, c in GIRIAS_PT.items():
-        texto = texto.replace(g, c)
     for g, c in GIRIAS_EN.items():
         texto = texto.replace(g, c)
     return texto
@@ -348,8 +337,7 @@ if not df.empty:
 
     st.markdown("## 💬 Comentários e Análises Detalhadas")
     for i, row in df[df['filme'] == filme_selecionado].sort_values("comentario_idx").iterrows():
-        st.markdown(f"Comentário {row['comentario_idx']}: {row['comentario']}")
-        st.markdown(f"<small style='color:gray'>Comentário original: {row['comentario_original']}</small>", unsafe_allow_html=True)
+        st.markdown(f"Comentário {row['comentario_idx']}: {row['comentario']}")        
         st.write(f"Sentimento: {row['sentimento']} | Polaridade: {row['polaridade']}")
 
 else:
